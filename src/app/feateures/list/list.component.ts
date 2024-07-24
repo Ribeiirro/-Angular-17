@@ -4,12 +4,16 @@ import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../shared/services/products.service';
 import { Product } from '../../shared/intenterfaces/product.interface';
 import { CardComponent } from './components/card/card.component';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list',
   standalone: true,
   imports: [
-    CardComponent
+    MatButtonModule,
+    CardComponent,
+    RouterLink,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
@@ -17,10 +21,10 @@ import { CardComponent } from './components/card/card.component';
 export class ListComponent {
   products: Product[] = [];
 
-  productServices = inject(ProductsService);
+  productService = inject(ProductsService);
 
   ngOnInit() {
-    this.productServices.getAll().subscribe((products) => {
+    this.productService.getAll().subscribe((products) => {
       this.products = products;
     });
   }
