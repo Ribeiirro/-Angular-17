@@ -12,5 +12,9 @@ export class ProductsService {
   getAll() {
     return this.httpClient.get<Product[]>('/api/products');
   }
+
+  post(payload: any) {
+    return this.httpClient.post('/api/products', payload);
+  }
   
 }
